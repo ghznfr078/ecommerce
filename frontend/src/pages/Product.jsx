@@ -24,7 +24,7 @@ const Product = () => {
 
   useEffect(() => {
     fetchProductData();
-  }, [productId]);
+  }, [productId, products]);
 
   return productData ? (
     <div className="border-t pt-10 transition-opacity ease-in duration-500 opacity-100">
@@ -35,6 +35,7 @@ const Product = () => {
           <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full ">
             {productData.image.map((item, index) => (
               <img
+                key={index}
                 onClick={() => setImage(item)}
                 src={item}
                 className="w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer "
@@ -70,11 +71,11 @@ const Product = () => {
             <div className="flex gap-2">
               {productData.sizes.map((item, index) => (
                 <button
+                  key={index}
                   onClick={() => setSize(item)}
                   className={`border py-2 px-4 bg-gray-100 ${
                     item === size ? "border-orange-500" : ""
                   }`}
-                  key={index}
                 >
                   {" "}
                   {item}{" "}
