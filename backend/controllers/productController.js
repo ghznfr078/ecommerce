@@ -58,7 +58,7 @@ const listProducts = async (req, res) => {
 
     res.status(200).json({ success: true, products, message: "Products got" });
   } catch (error) {
-    return res.status(500).json({ success: false, mesaage: error.message });
+    return res.status(500).json({ success: false, message: error.message });
   }
 };
 

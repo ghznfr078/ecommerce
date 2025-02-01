@@ -56,7 +56,9 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(404).json({ success: false, error: "User not found!" });
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found!" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -70,7 +72,7 @@ const loginUser = async (req, res) => {
     if (!isMatch) {
       return res
         .status(402)
-        .json({ success: false, error: "invalid credentials!" });
+        .json({ success: false, message: "invalid credentials!" });
     }
   } catch (error) {
     return res.status(500).json({ success: false, error: error.message });

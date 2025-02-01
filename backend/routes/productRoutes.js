@@ -33,8 +33,8 @@ router.post(
   ]),
   addProduct
 );
-router.get("/list", adminAuth, listProducts);
+router.get("/list", listProducts);
 router.delete("/remove/:id", adminAuth, removeProduct);
-router.get("/single", adminAuth, singleProduct);
+router.get("/single", singleProduct);
 
 export default router;
