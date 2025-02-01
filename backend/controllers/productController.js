@@ -64,10 +64,12 @@ const listProducts = async (req, res) => {
 
 const removeProduct = async (req, res) => {
   try {
-    const { productId } = req.params;
-    await Product.findByIdAndDelete(productId);
+    const { id } = req.params;
+    await Product.findByIdAndDelete(id);
 
-    res.status(200).json({ success: true, message: "Product removed!" });
+    res
+      .status(200)
+      .json({ success: true, message: "Product removed successfully!" });
   } catch (error) {
     return res.status(500).json({ success: false, mesaage: error.message });
   }
@@ -75,13 +77,15 @@ const removeProduct = async (req, res) => {
 
 const singleProduct = async (req, res) => {
   try {
-    const { productId } = req.params;
+    const { id } = req.body;
 
-    const product = await Product.findById(productId);
+    const product = await Product.findById(id);
 
-    res
-      .status(200)
-      .json({ success: true, product, message: "Product fetched!" });
+    res.status(200).json({
+      success: true,
+      product,
+      message: "Product fetched successfully!",
+    });
   } catch (error) {
     return res.status(500).json({ success: false, mesaage: error.message });
   }

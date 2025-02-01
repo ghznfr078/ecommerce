@@ -34,7 +34,7 @@ router.post(
   addProduct
 );
 router.get("/list", adminAuth, listProducts);
-router.delete("/remove/:productId", adminAuth, removeProduct);
-router.get("/single/:productId", adminAuth, singleProduct);
+router.delete("/remove/:id", adminAuth, removeProduct);
+router.get("/single", adminAuth, singleProduct);
 
 export default router;
