@@ -5,6 +5,8 @@ import connectDB from "./config/db.js";
 import connectCloudinary from "./config/cloudinary.js";
 import userRouter from "./routes/userRoutes.js";
 import productRouter from "./routes/productRoutes.js";
+import cartRouter from "./routes/cartRoutes.js";
+import orderRouter from "./routes/orderRoutes.js";
 
 // Load environment variables at the top
 dotenv.config();
@@ -19,6 +21,8 @@ app.use(cors()); // Allow only specific origins
 // API endpoints
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
 
 // Start Server
 const port = process.env.PORT || 4000;
