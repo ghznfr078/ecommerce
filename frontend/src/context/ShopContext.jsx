@@ -77,17 +77,40 @@ const ShopContextProvider = ({ children }) => {
     }
   };
 
+  // const getCartAmount = () => {
+  //   let totalAmount = 0;
+
+  //   for (const items in cartItems) {
+  //     let itemInfo = products.find((product) => product._id === items);
+  //     for (const item in cartItems[items]) {
+  //       try {
+  //         if (cartItems[items][item] > 0) {
+  //           totalAmount += itemInfo.price * cartItems[items][item];
+  //         }
+  //       } catch (error) {}
+  //     }
+  //   }
+  //   return totalAmount;
+  // };
+
   const getCartAmount = () => {
     let totalAmount = 0;
 
     for (const items in cartItems) {
       let itemInfo = products.find((product) => product._id === items);
+      if (!itemInfo) {
+        console.warn(`Product with ID ${items} not found!`);
+        continue; // Skip this product if it's not found
+      }
+
       for (const item in cartItems[items]) {
         try {
           if (cartItems[items][item] > 0) {
             totalAmount += itemInfo.price * cartItems[items][item];
           }
-        } catch (error) {}
+        } catch (error) {
+          console.error("Error calculating amount:", error);
+        }
       }
     }
     return totalAmount;
@@ -141,6 +164,7 @@ const ShopContextProvider = ({ children }) => {
     addToCart,
     getCartCount,
     updateQuantity,
+    setCartItems,
     getCartAmount,
     navigate,
     backendUrl,

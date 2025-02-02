@@ -12,7 +12,7 @@ import {
 
 const router = Router();
 // admin features
-router.post("/list", adminAuth, allOrders);
+router.get("/list", adminAuth, allOrders);
 router.post("/status", adminAuth, updateStatus);
 
 // payment features
@@ -21,6 +21,6 @@ router.post("/stripe", authUser, placeOrderStripe);
 router.post("/razorpay", authUser, placeOrderRazorpay);
 
 // User feature
-router.post("/user-orders", authUser, userOrders);
+router.get("/user-orders", authUser, userOrders);
 
 export default router;
